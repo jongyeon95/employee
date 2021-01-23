@@ -24,17 +24,17 @@ public class EmployeeRepositoryTest {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    String name="Tester";
+    String email="tester@example.com";
+    Integer position=3;
+    LocalDate joinDate= LocalDate.now();
+    LocalDate retireDate=LocalDate.MAX;
+    Integer vacation=3;
+    Integer wages=40000000;
+    String department="Develop";
     
     @Test
     public void save(){
-        String name="Tester";
-        String email="tester@example.com";
-        Integer position=3;
-        LocalDate joinDate= LocalDate.now();
-        LocalDate retireDate=LocalDate.MAX;
-        Integer vacation=3;
-        Integer wages=40000000;
-        String department="Develop";
 
         Employee mockEmployee=Employee.builder()
                 .name(name).email(email)
@@ -47,6 +47,24 @@ public class EmployeeRepositoryTest {
                 .build();
         Employee employee=employeeRepository.save(mockEmployee);
         assertThat(employee.getEmail(),is(email));
+
+    }
+
+    @Test
+    public void findByName(){
+
+        Employee mockEmployee=Employee.builder()
+                .name(name).email(email)
+                .position(position)
+                .joinDate(joinDate)
+                .retireDate(retireDate)
+                .vacation(vacation)
+                .wages(wages)
+                .department(department)
+                .build();
+        Employee employee=employeeRepository.save(mockEmployee);
+        Employee findEmployee=employeeRepository.findByName(name).orElse(null);
+        assertThat(findEmployee.getName(),is(name));
 
     }
 }

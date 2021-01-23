@@ -1,14 +1,12 @@
 package com.jongyeon.employee.domain;
 
-import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -16,16 +14,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class Employee {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String name; //이름
 
-    @NotNull
+    @NotEmpty
     private String email; //이메일
 
     @NotNull
