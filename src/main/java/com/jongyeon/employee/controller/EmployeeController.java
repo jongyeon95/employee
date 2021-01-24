@@ -23,7 +23,6 @@ public class EmployeeController {
 
     @GetMapping("/employee")
     public List<Employee> list(){
-
        return employeeService.getEmployeeList();
     }
 
@@ -44,5 +43,10 @@ public class EmployeeController {
         employeeService.addEmployee(employee);
         URI location = new URI("/employee/"+employee.getId());
         return ResponseEntity.created(location).body("{}");
+    }
+
+    @PatchMapping("/employee/{id}")
+    public Employee update(@PathVariable("id") Long id, @RequestBody Employee resource){
+       return employeeService.updateEmployee(id,resource);
     }
 }

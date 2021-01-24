@@ -41,4 +41,31 @@ public class Employee {
 
     private String department;//부서
 
+    public void update(Employee e){
+        if(e.getName()!=null){
+            this.name=e.getName();
+        }
+        if(e.getEmail()!=null){
+            this.email=e.getEmail();
+        }
+        if(e.getPosition()!=null){
+            this.position=e.getPosition();
+        }
+        if(e.getJoinDate()!=null){
+            this.joinDate=e.getJoinDate();
+        }
+        if(e.getRetireDate()!=null){
+            this.retireDate=e.getRetireDate();
+        }
+        if(e.getVacation()!=null){
+            this.vacation=e.getVacation();
+        }
+        if(e.getWages()!=null){
+            this.wages=e.getWages();
+        }
+        if(e.getDepartment()!=null){
+            this.department=e.getDepartment();
+        }
+    }
+
 }

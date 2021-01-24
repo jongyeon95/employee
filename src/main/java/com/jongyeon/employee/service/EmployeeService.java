@@ -21,6 +21,7 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployeeList(){
+
         return employeeRepository.findAll();
     }
 
@@ -31,6 +32,12 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee e){
         return employeeRepository.save(e);
+    }
+
+    public Employee updateEmployee(Long id, Employee e){
+        Employee update=employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
+        update.update(e);
+        return employeeRepository.save(update);
     }
 
 
