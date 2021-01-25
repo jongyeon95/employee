@@ -37,7 +37,8 @@ public class EmployeeController {
         Employee employee = Employee.builder()
                 .name(resource.getName())
                 .email(resource.getEmail())
-                .joinDate(LocalDate.now())
+                .joinDate(resource.getJoinDate())
+                .vacation(0)
                 .position(1)
                 .build();
         employeeService.addEmployee(employee);
