@@ -6,5 +6,5 @@ employee management
 - [ ] Admin 
 - [ ] 휴가(달력) 구현
 - [ ] 근태 구현
-- [ ] 공지 사항
+- [x] 공지 사항
 - [ ] admin , customer 분리
