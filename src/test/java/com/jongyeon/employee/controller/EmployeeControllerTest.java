@@ -81,4 +81,15 @@ public class EmployeeControllerTest {
         verify(employeeService).updateEmployee(any(), any());
     }
 
+    @Test
+    public void getDepartmentPeopleList() throws Exception {
+        List<Employee> list = new ArrayList<>();
+        list.add(Employee.builder().name("Tester").department("develop").build());
+        given(employeeService.getDepartmentPeopleList("develop")).willReturn(list);
+
+        mvc.perform(get("/employee/department/develop"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("develop")));
+    }
+
 }

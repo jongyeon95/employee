@@ -16,30 +16,33 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    EmployeeService(EmployeeRepository employeeRepository){
-        this.employeeRepository=employeeRepository;
+    EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> getEmployeeList(){
+    public List<Employee> getEmployeeList() {
 
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployee(Long id){
-        Employee employee =employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
+    public Employee getEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         return employee;
     }
 
-    public Employee addEmployee(Employee e){
+    public Employee addEmployee(Employee e) {
         return employeeRepository.save(e);
     }
 
-    public Employee updateEmployee(Long id, Employee e){
-        Employee update=employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
+    public Employee updateEmployee(Long id, Employee e) {
+        Employee update = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         update.update(e);
         return employeeRepository.save(update);
     }
 
 
-
+    public List<Employee> getDepartmentPeopleList(String name) {
+        List<Employee> list = employeeRepository.findAllByDepartment(name);
+        return list;
+    }
 }

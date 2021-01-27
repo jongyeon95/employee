@@ -13,7 +13,7 @@ public class VacationErrorAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(VacationNotFoundException.class)
-    public String handleNotFound(){
+    public String handleNotFound() {
         return "{}";
     }
 }

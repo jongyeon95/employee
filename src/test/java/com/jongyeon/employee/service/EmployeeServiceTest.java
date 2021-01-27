@@ -96,5 +96,13 @@ public class EmployeeServiceTest {
 
     }
 
+    @Test
+    public void getDepartmentPeopleList(){
+        List<Employee> list = new ArrayList<>();
+        list.add(Employee.builder().name("Tester").email("tester@example.com").department("develop").build());
+        given(employeeRepository.findAllByDepartment("develop")).willReturn(list);
+        assertThat(employeeService.getDepartmentPeopleList("develop"), is(list));
+    }
+
 
 }
