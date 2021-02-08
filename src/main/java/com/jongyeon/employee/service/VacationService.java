@@ -67,4 +67,9 @@ public class VacationService {
 
         return  vacation;
     }
+
+    public  List<Vacation> getVacationsWhenDate(LocalDate start, LocalDate end){
+        List<Vacation> list=vacationRepository.findAllByStartGreaterThanEqualAndStartLessThanEqual(start,end);
+        return list;
+    }
 }

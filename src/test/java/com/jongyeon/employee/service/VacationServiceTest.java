@@ -66,7 +66,7 @@ public class VacationServiceTest {
     }
 
     @Test
-    public void UpdateVacations(){
+    public void updateVacations(){
         Vacation mockVacation= Vacation.builder()
                 .id(1L)
                 .employeeId(1L)
@@ -85,5 +85,25 @@ public class VacationServiceTest {
         assertThat(vacation.getEnd(),is(LocalDate.of(2021,1,29)));
         verify(vacationRepository).save(any());
     }
+
+    @Test
+    public void getVacationsWhenDate(){
+        LocalDate start=LocalDate.now();
+        LocalDate end=start.plusDays(3);
+        List<Vacation> mockList = new ArrayList<>();
+        for(int i=1; i<=3; i++){
+            mockList.add(Vacation.builder()
+                    .id(Long.valueOf(i))
+                    .start(start)
+                    .end(start.plusDays(i))
+                    .build());
+        }
+        given(vacationRepository.findAllByStartGreaterThanEqualAndStartLessThanEqual(start,end)).willReturn(mockList);
+        List<Vacation> list = vacationService.getVacationsWhenDate(start,end);
+        assertThat(list.size(),is(3));
+
+    }
+
+
 
 }

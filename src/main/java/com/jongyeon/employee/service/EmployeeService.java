@@ -40,7 +40,6 @@ public class EmployeeService {
         return employeeRepository.save(update);
     }
 
-
     public List<Employee> getDepartmentPeopleList(String name) {
         List<Employee> list = employeeRepository.findAllByDepartment(name);
         return list;

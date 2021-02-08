@@ -41,6 +41,8 @@ public class Employee {
 
     private String department;//부서
 
+
+
     public void update(Employee e){
         if(e.getName()!=null){
             this.name=e.getName();

@@ -3,6 +3,7 @@ package com.jongyeon.employee.controller;
 import com.jongyeon.employee.domain.Vacation;
 import com.jongyeon.employee.service.VacationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,14 @@ public class VacationController {
             @PathVariable("id") Long id){
         Vacation vacation=vacationService.updateVacation(id,resource);
         return vacation;
+    }
+
+    @GetMapping("/vacations/date")
+    public List<Vacation> getVacationsWhenDate(
+            @RequestParam("start") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate start,
+            @RequestParam("end") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        List<Vacation> list = vacationService.getVacationsWhenDate(start,end);
+        return list;
     }
 
 }
